@@ -1,1 +1,1 @@
-export const APIs_BASE = '';
+export const APIs_BASE = 'https://React-native-server.midend.tech/api';
