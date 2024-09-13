@@ -15,7 +15,7 @@ import InfoProvider from '../screens/provider/info/InfoProvider';
 const Navigation = () => {
   const Tap = createBottomTabNavigator();
 
-  const user = 'client';
+  const user = 'auth';
 
   function initialRouteName(user) {
     switch (user) {

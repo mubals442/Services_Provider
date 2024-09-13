@@ -11,7 +11,7 @@ const Cards = () => {
           height: 130,
           borderRadius: 7,
           alignSelf: 'center',
-          marginVertical:6
+          marginVertical: 6,
         }}>
         <Text>Cards</Text>
       </View>

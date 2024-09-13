@@ -13,9 +13,7 @@ const BookingClient = () => {
     <SafeAreaView>
       <ScrollView>
         <View>
-          <TouchableOpacity>
-            <Cards />
-          </TouchableOpacity>
+          <Cards />
           <View
             style={{
               width: '87.5%',
@@ -30,12 +28,8 @@ const BookingClient = () => {
           </View>
         </View>
 
-
-        
         <View>
-          <TouchableOpacity>
-            <Cards />
-          </TouchableOpacity>
+          <Cards />
           <View
             style={{
               width: '87.5%',
@@ -50,9 +44,7 @@ const BookingClient = () => {
           </View>
         </View>
         <View>
-          <TouchableOpacity>
-            <Cards />
-          </TouchableOpacity>
+          <Cards />
           <View
             style={{
               width: '87.5%',
@@ -67,9 +59,7 @@ const BookingClient = () => {
           </View>
         </View>
         <View>
-          <TouchableOpacity>
-            <Cards />
-          </TouchableOpacity>
+          <Cards />
           <View
             style={{
               width: '87.5%',

@@ -3,6 +3,11 @@ import React from 'react';
 import {routes} from '../../../stack/routes';
 
 const UserSelector = ({navigation}) => {
+  const typeOfUser = {
+    provider: 'provider',
+    customer: 'customer',
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -15,7 +20,9 @@ const UserSelector = ({navigation}) => {
         <View>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(routes.auth.NewRegistration);
+              navigation.navigate(routes.auth.NewRegistration, {
+                user: typeOfUser.customer,
+              });
             }}
             style={{
               borderWidth: 2,
@@ -33,7 +40,9 @@ const UserSelector = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(routes.auth.NewRegistration);
+              navigation.navigate(routes.auth.NewRegistration, {
+                user: typeOfUser.provider,
+              });
             }}
             style={{
               borderWidth: 2,
@@ -43,7 +52,9 @@ const UserSelector = ({navigation}) => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{alignSelf: 'center', color: 'black', fontSize: 64}}>Provider</Text>
+            <Text style={{alignSelf: 'center', color: 'black', fontSize: 64}}>
+              Provider
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

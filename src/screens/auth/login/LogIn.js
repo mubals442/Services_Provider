@@ -5,68 +5,107 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import React, {useReducer} from 'react';
 import {routes} from '../../../stack/routes';
+import {APIs_BASE} from '../../../APIs/APIs_BASE';
+import {style, styles} from './style';
 
 const LogIn = ({navigation}) => {
-
   const initialValue = {
     email: '',
     password: '',
   };
 
+  const reducer = (logInState, action) => {
+    switch (action.type) {
+      case 'input':
+        return {...logInState, [action.field]: action.value};
+      default:
+        return logInState;
+    }
+  };
+
   const [state, dispatch] = useReducer(reducer, initialValue);
 
-  const reducer = (state, action) => {};
+  const handleChange = (field, value) => {
+    dispatch({
+      type: 'input',
+      field: field,
+      value: value,
+    });
+  };
 
-  const handleChange = () => {};
-  const handleSumbit = () => {};
+  const handleSubmit = async () => {
+    if (!state.email || !state.password) {
+      Alert.alert('Validation Error', 'Please fill out both fields.');
+      return;
+    }
+
+    try {
+      const response = await APIs_BASE.post('/login', JSON.stringify(state), {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      accessToken = response.data;
+      // AsyncStorage.setItem('accessToken', accessToken); // Store token using AsyncStorage
+      navigation.navigate(routes.auth.UserSelector);
+      console.log(accessToken);
+    } catch (error) {
+      console.error(
+        'Login failed:',
+        error.response ? error.response.data : error.message,
+      );
+      Alert.alert(
+        'Login Error',
+        'Unable to log in. Please check your credentials.',
+      );
+    }
+  };
 
   return (
-    <SafeAreaView
-      style={{
-        height: '100%',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        marginHorizontal: 30,
-      }}>
+    <SafeAreaView style={style.container}>
       <View>
-        <Text style={{textAlign: 'center'}}>Log In</Text>
+        <Text style={{textAlign: 'center', fontSize: 24, marginBottom: 20}}>
+          Log In
+        </Text>
+
         <Text>Email:</Text>
         <TextInput
-          style={{borderWidth: 2, width: '100%', marginBottom: 7,borderRadius: 5}}
+          style={style.input}
+          onChangeText={text => handleChange('email', text)}
+          value={state.email}
           placeholder="Email..."
+          keyboardType="email-address"
         />
 
         <Text>Password:</Text>
         <TextInput
-          style={{borderWidth: 2, width: '100%', marginBottom: 19}}
+          style={style.input}
+          secureTextEntry={true}
+          onChangeText={text => handleChange('password', text)}
+          value={state.password}
           placeholder="Password..."
         />
 
-        <Button
-          title="Submit"
-          onPress={() => {
-            console.log('');
-          }}
-        />
+        <Button title="Submit" onPress={handleSubmit} />
 
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 6,
-          }}>
-          <TouchableOpacity onPress={() => {}}>
-            <Text style={{color: 'blue'}}>Remeber me</Text>
+        <View style={style.optionsContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              /* Implement remember me functionality */
+            }}>
+            <Text style={style.link}>Remember me</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => {
               navigation.navigate(routes.auth.UserSelector);
             }}>
-            <Text style={{color: 'blue'}}>I dont Have Account</Text>
+            <Text style={style.link}>I don't Have Account</Text>
           </TouchableOpacity>
         </View>
       </View>
