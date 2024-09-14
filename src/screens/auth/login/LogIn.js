@@ -10,7 +10,10 @@ import {
 import React, {useReducer} from 'react';
 import {routes} from '../../../stack/routes';
 import {APIs_BASE} from '../../../APIs/APIs_BASE';
-import {style, styles} from './style';
+import {style} from './style';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import { getAccessToken} from '../../../APIs/token';
 
 const LogIn = ({navigation}) => {
   const initialValue = {
@@ -44,16 +47,21 @@ const LogIn = ({navigation}) => {
     }
 
     try {
-      const response = await APIs_BASE.post('/login', JSON.stringify(state), {
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await axios.post(
+        `${APIs_BASE}/login`,
+        JSON.stringify(state),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      });
+      );
 
-      accessToken = response.data;
-      // AsyncStorage.setItem('accessToken', accessToken); // Store token using AsyncStorage
-      navigation.navigate(routes.auth.UserSelector);
-      console.log(accessToken);
+      accessToken = response.data.token
+      await AsyncStorage.setItem('accessToken', accessToken); // Store token using AsyncStorage
+      navigation.navigate(routes.auth.OTP);
+      console.log(response.data.token);
+      console.log(response.data.otp);
     } catch (error) {
       console.error(
         'Login failed:',
@@ -65,6 +73,9 @@ const LogIn = ({navigation}) => {
       );
     }
   };
+
+
+
 
   return (
     <SafeAreaView style={style.container}>

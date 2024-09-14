@@ -89,7 +89,12 @@ const NewRegistration = ({route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text style={styles.title}>New Registration</Text>
+        <Text style={styles.title}>
+          New Registration of{' '}
+          <Text style={{color: 'green'}}>
+            {typeOfUser.user === 'customer' ? 'client' : typeOfUser.user}
+          </Text>
+        </Text>
 
         <TouchableOpacity
           style={{

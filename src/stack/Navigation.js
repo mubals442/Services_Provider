@@ -11,10 +11,11 @@ import BookingClient from '../screens/client/bookings/BookingClient';
 import HomeProvider from '../screens/provider/home/HomeProvider';
 import BookingProvider from '../screens/provider/bookings/BookingProvider';
 import InfoProvider from '../screens/provider/info/InfoProvider';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Navigation = () => {
-  const Tap = createBottomTabNavigator();
-
+  // const Tap = createBottomTabNavigator();
+  const Stack = createStackNavigator();
   const user = 'auth';
 
   function initialRouteName(user) {
@@ -29,50 +30,56 @@ const Navigation = () => {
   }
 
   return (
-    <Tap.Navigator
+    <Stack.Navigator
       screenOptions={{headerShown: true}}
       initialRouteName={initialRouteName(user)}>
       {user === 'auth' && (
         <>
-          <Tap.Screen name={routes.auth.LogIn} component={LogIn} />
-          <Tap.Screen
+          <Stack.Screen name={routes.auth.LogIn} component={LogIn} />
+          <Stack.Screen
             name={routes.auth.UserSelector}
             component={UserSelector}
           />
-          <Tap.Screen
+          <Stack.Screen
             name={routes.auth.NewRegistration}
             component={NewRegistration}
           />
-          <Tap.Screen name={routes.auth.OTP} component={OTP} />
+          <Stack.Screen name={routes.auth.OTP} component={OTP} />
         </>
       )}
       {user === 'client' && (
         <>
-          <Tap.Screen name={routes.client.HomeClient} component={HomeClient} />
-          <Tap.Screen
+          <Stack.Screen
+            name={routes.client.HomeClient}
+            component={HomeClient}
+          />
+          <Stack.Screen
             name={routes.client.BookingClient}
             component={BookingClient}
           />
-          <Tap.Screen name={routes.client.InfoClient} component={InfoClient} />
+          <Stack.Screen
+            name={routes.client.InfoClient}
+            component={InfoClient}
+          />
         </>
       )}
       {user === 'provider' && (
         <>
-          <Tap.Screen
+          <Stack.Screen
             name={routes.Provider.HomeProvider}
             component={HomeProvider}
           />
-          <Tap.Screen
+          <Stack.Screen
             name={routes.Provider.BookingProvider}
             component={BookingProvider}
           />
-          <Tap.Screen
+          <Stack.Screen
             name={routes.Provider.InfoProvider}
             component={InfoProvider}
           />
         </>
       )}
-    </Tap.Navigator>
+    </Stack.Navigator>
   );
 };
 
