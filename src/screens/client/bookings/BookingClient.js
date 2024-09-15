@@ -5,10 +5,33 @@ import {
   ScrollView,
   Text,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Cards from '../../../components/Cards';
+import axios from 'axios';
+import {APIs_BASE} from '../../../APIs/APIs_BASE';
+import {getAccessToken} from '../../../APIs/token';
 
 const BookingClient = () => {
+  useEffect(() => {
+    const getAllreservations = async () => {
+      await axios
+        .get(`${APIs_BASE}/reservations?status=pending&page=1`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${await getAccessToken()}`,
+          },
+        })
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    };
+
+    getAllreservations();
+  }, []);
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -35,11 +58,11 @@ const BookingClient = () => {
               width: '87.5%',
               alignSelf: 'center',
               borderRadius: 5,
-              backgroundColor: 'green',
+              backgroundColor: 'orange',
               padding: 2,
             }}>
             <Text style={{textAlign: 'center', fontSize: 22, color: 'white'}}>
-              success
+              pending
             </Text>
           </View>
         </View>
@@ -50,11 +73,11 @@ const BookingClient = () => {
               width: '87.5%',
               alignSelf: 'center',
               borderRadius: 5,
-              backgroundColor: 'green',
+              backgroundColor: 'red',
               padding: 2,
             }}>
             <Text style={{textAlign: 'center', fontSize: 22, color: 'white'}}>
-              success
+              rejict
             </Text>
           </View>
         </View>
@@ -65,11 +88,11 @@ const BookingClient = () => {
               width: '87.5%',
               alignSelf: 'center',
               borderRadius: 5,
-              backgroundColor: 'green',
+              backgroundColor: 'gray',
               padding: 2,
             }}>
             <Text style={{textAlign: 'center', fontSize: 22, color: 'white'}}>
-              success
+              cancled
             </Text>
           </View>
         </View>

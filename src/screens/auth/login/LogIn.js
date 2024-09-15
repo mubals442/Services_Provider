@@ -7,15 +7,18 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import React, {useReducer} from 'react';
+import React, {useContext, useReducer} from 'react';
 import {routes} from '../../../stack/routes';
 import {APIs_BASE} from '../../../APIs/APIs_BASE';
 import {style} from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { getAccessToken} from '../../../APIs/token';
+import {getAccessToken} from '../../../APIs/token';
+import {Role} from '../../../context/Role';
 
 const LogIn = ({navigation}) => {
+  const {setRole} = useContext(Role);
+
   const initialValue = {
     email: '',
     password: '',
@@ -57,10 +60,11 @@ const LogIn = ({navigation}) => {
         },
       );
 
-      accessToken = response.data.token
+      accessToken = response.data.token;
+      accessRole = response.data.user.role;
       await AsyncStorage.setItem('accessToken', accessToken); // Store token using AsyncStorage
+      // setRole(`${accessRole}`);
       navigation.navigate(routes.auth.OTP);
-      console.log(response.data.token);
       console.log(response.data.otp);
     } catch (error) {
       console.error(
@@ -73,9 +77,6 @@ const LogIn = ({navigation}) => {
       );
     }
   };
-
-
-
 
   return (
     <SafeAreaView style={style.container}>

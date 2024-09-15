@@ -6,10 +6,57 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useReducer} from 'react';
 import {SafeAreaFrameContext} from 'react-native-safe-area-context';
+import axios from 'axios';
+import {APIs_BASE} from '../../../APIs/APIs_BASE';
 
 const AddService = () => {
+  const initialValue = {
+    service_name: '',
+    description: '',
+    price: null,
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'input':
+        return {...state, [action.field]: action.value};
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialValue);
+
+  const handleChange = (field, value) => {
+    dispatch({
+      type: 'input',
+      field: field,
+      value: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    await axios
+      .post(
+        `${APIs_BASE}/services`,
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${await getAccessToken()}`,
+          },
+        },
+      )
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -37,6 +84,8 @@ const AddService = () => {
             marginBottom: 7,
             borderRadius: 5,
           }}
+          onChangeText={text => handleChange('service_name', text)}
+          value={state.service_name}
           placeholder="Name..."
         />
 
@@ -49,6 +98,8 @@ const AddService = () => {
             marginBottom: 19,
             borderRadius: 5,
           }}
+          onChangeText={text => handleChange('description', text)}
+          value={state.description}
           placeholder="Discribe..."
         />
         <Text>Price:</Text>
@@ -59,9 +110,14 @@ const AddService = () => {
             marginBottom: 19,
             borderRadius: 5,
           }}
+          onChangeText={text => handleChange('price', text)}
+          value={state.price}
           placeholder="Price..."
         />
         <TouchableOpacity
+          onPress={() => {
+            handleSubmit;
+          }}
           style={{
             width: '100%',
             alignSelf: 'center',

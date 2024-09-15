@@ -4,7 +4,7 @@ import {routes} from '../../../stack/routes';
 
 const UserSelector = ({navigation}) => {
   const typeOfUser = {
-    provider: 'provider',
+    provider: ' provider',
     customer: 'customer',
   };
 
