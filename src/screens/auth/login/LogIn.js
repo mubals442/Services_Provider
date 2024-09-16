@@ -81,24 +81,26 @@ const LogIn = ({navigation}) => {
   return (
     <SafeAreaView style={style.container}>
       <View>
-        <Text style={{textAlign: 'center', fontSize: 24, marginBottom: 20}}>
+        <Text style={{textAlign: 'center', fontSize: 24, marginBottom: 20,color:'black'}}>
           Log In
         </Text>
 
-        <Text>Email:</Text>
+        <Text style={{color:"black"}}>Email:</Text>
         <TextInput
           style={style.input}
           onChangeText={text => handleChange('email', text)}
           value={state.email}
+          placeholderTextColor={'black'}
           placeholder="Email..."
           keyboardType="email-address"
         />
 
-        <Text>Password:</Text>
+        <Text style={{color:"black"}}>Password:</Text>
         <TextInput
           style={style.input}
           secureTextEntry={true}
           onChangeText={text => handleChange('password', text)}
+          placeholderTextColor={'black'}
           value={state.password}
           placeholder="Password..."
         />

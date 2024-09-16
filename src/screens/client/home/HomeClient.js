@@ -57,9 +57,9 @@ const HomeClient = () => {
                 justifyContent: 'center',
                 marginVertical: 6,
               }}>
-              {/* <Text style={{textAlign: 'center'}}>{item.provider.name}</Text> */}
-              <Text style={{textAlign: 'center'}}>{item.description}</Text>
-              <Text style={{textAlign: 'center'}}>{item.price}</Text>
+              {/* <Text style={{textAlign: 'center',color:'black'}}>{item.provider.name}</Text> */}
+              <Text style={{textAlign: 'center',color:'black'}}>{item.description}</Text>
+              <Text style={{textAlign: 'center',color:'black'}}>{item.price}</Text>
             </View>
           );
         }}

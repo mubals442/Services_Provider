@@ -14,11 +14,12 @@ export const style = StyleSheet.create({
     },
     input: {
       borderWidth: 2,
+      borderColor: '#ccc',
       width: '100%',
-      marginBottom: 7,
       borderRadius: 5,
-      paddingHorizontal: 10,
-      height: 40,
+      marginBottom: 10,
+      padding: 10,
+      color: 'black',
     },
     optionsContainer: {
       flexDirection: 'row',
@@ -27,5 +28,6 @@ export const style = StyleSheet.create({
     },
     link: {
       color: 'blue',
+      fontSize:12
     },
   });

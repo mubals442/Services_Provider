@@ -8,7 +8,7 @@ const ButtonUi = props => {
       style={{
         // borderWidth: 1,
         width: '42.5%',
-        height: 29,
+        height: 49,
         justifyContent: 'center',
         borderRadius: 7,
         backgroundColor: props.color,

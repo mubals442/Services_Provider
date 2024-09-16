@@ -16,7 +16,7 @@ const UserSelector = ({navigation}) => {
         alignItems: 'center',
       }}>
       <View>
-        <Text>Place Select Your User Account</Text>
+        <Text style={{color:'black',textAlign:'start',fontSize:12}}>Place Select Your User Account:</Text>
         <View>
           <TouchableOpacity
             onPress={() => {
@@ -26,7 +26,7 @@ const UserSelector = ({navigation}) => {
             }}
             style={{
               borderWidth: 2,
-              borderRadius: 5,
+              borderRadius: 15,
               width: 350,
               height: 150,
               marginVertical: 10,
@@ -46,7 +46,7 @@ const UserSelector = ({navigation}) => {
             }}
             style={{
               borderWidth: 2,
-              borderRadius: 5,
+              borderRadius: 15,
               width: 350,
               height: 150,
               justifyContent: 'center',

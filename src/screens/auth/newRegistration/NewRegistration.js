@@ -112,18 +112,18 @@ const NewRegistration = ({route, navigation}) => {
     <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.title}>
-          New Registration of 
+          New Registration of
           <Text style={{color: 'green'}}>
             {typeOfUser.user === 'customer' ? ' client' : typeOfUser.user}
           </Text>
         </Text>
 
         <TouchableOpacity
-          onPress={() =>{}}
+          onPress={() => {}}
           style={{
             backgroundColor: 'gray',
-            width: 130,
-            height: 130,
+            width: 120,
+            height: 120,
             borderRadius: 100,
             alignSelf: 'center',
             justifyContent: 'strat',
@@ -139,11 +139,11 @@ const NewRegistration = ({route, navigation}) => {
                   width: 150,
                   paddingTop: 15,
                 }}>
-                <Text style={{color: '#fff', textAlign: 'center'}}>
+                <Text style={{color: '#fff', textAlign: 'center', fontSize: 8}}>
                   Uplode image
                 </Text>
               </View>
-              <Text style={{alignSelf: 'center', marginTop: 25}}>
+              <Text style={{alignSelf: 'center', marginTop: 25, fontSize: 8}}>
                 Uplode Image
               </Text>
             </>
@@ -152,43 +152,50 @@ const NewRegistration = ({route, navigation}) => {
           )}
         </TouchableOpacity>
 
-        <Text>Name:</Text>
+        <Text style={{color: 'black'}}>Name:</Text>
         <TextInput
           style={styles.input}
           placeholder="Name..."
           value={state.name}
+          placeholderTextColor={'gray'}
           onChangeText={text => handleChange('name', text)}
         />
 
-        <Text>Role:</Text>
+        <Text style={{color: 'black'}}>Role:</Text>
         <TextInput
           editable={false}
-          style={styles.input}
+          style={[
+            styles.input,
+            {backgroundColor: 'gray', opacity: 0.4},
+          ]}
           value={state.role}
           onChangeText={text => handleChange('role', text)}
         />
 
-        <Text>Email:</Text>
+        <Text style={{color: 'black'}}>Email:</Text>
         <TextInput
           style={styles.input}
           placeholder="Email..."
           value={state.email}
+          placeholderTextColor={'gray'}
           onChangeText={text => handleChange('email', text)}
         />
-        <Text>Password:</Text>
+        <Text style={{color: 'black'}}>Password:</Text>
         <TextInput
           style={styles.input}
           placeholder="Password..."
           secureTextEntry
           value={state.password}
+          placeholderTextColor={'gray'}
           onChangeText={text => handleChange('password', text)}
         />
-        <Text>Phone:</Text>
+        <Text style={{color: 'black'}}>Phone:</Text>
         <TextInput
           style={styles.input}
           keyboardType="number-pad"
           placeholder="Phone..."
           value={state.mobile_number}
+          placeholderTextColor={'gray'}
           onChangeText={text => handleChange('mobile_number', text)}
         />
       </View>
@@ -207,17 +214,19 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'black',
   },
   input: {
     borderWidth: 2,
-    borderColor: '#ccc',
+    borderColor: '#000000',
     width: '100%',
     borderRadius: 5,
     marginBottom: 10,
     padding: 10,
+    color: 'black',
   },
 });
 

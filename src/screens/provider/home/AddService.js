@@ -4,12 +4,12 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  Alert,
 } from 'react-native';
 import React, {useReducer} from 'react';
-import {SafeAreaFrameContext} from 'react-native-safe-area-context';
 import axios from 'axios';
 import {APIs_BASE} from '../../../APIs/APIs_BASE';
+import {getAccessToken} from '../../../APIs/token';
 
 const AddService = () => {
   const initialValue = {
@@ -41,7 +41,11 @@ const AddService = () => {
     await axios
       .post(
         `${APIs_BASE}/services`,
-        {},
+        {
+          service_name: state.service_name,
+          description: state.description,
+          price: state.price,
+        },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -50,10 +54,14 @@ const AddService = () => {
         },
       )
       .then(res => {
-        console.log(res.data);
+        console.log(res.data)
+        Alert.alert("add succefull")
+        dispatch({type: 'input', field: 'service_name', value: ''});
+        dispatch({type: 'input', field: 'description', value: ''});
+        dispatch({type: 'input', field: 'price', value: ''});
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response.data, 'errors');
       });
   };
 
@@ -63,7 +71,7 @@ const AddService = () => {
         alignSelf: 'center',
         borderWidth: 1,
         width: '87%',
-        height: 480,
+        height: 580,
         borderRadius: 5,
       }}>
       <Text
@@ -76,20 +84,22 @@ const AddService = () => {
         AddService
       </Text>
       <View style={{marginHorizontal: 5}}>
-        <Text>Name:</Text>
+        <Text style={{color: 'black'}}>Name:</Text>
         <TextInput
           style={{
             borderWidth: 2,
             width: '100%',
             marginBottom: 7,
             borderRadius: 5,
+            color: 'black',
           }}
+          placeholderTextColor={'black'}
           onChangeText={text => handleChange('service_name', text)}
           value={state.service_name}
           placeholder="Name..."
         />
 
-        <Text>Discribe:</Text>
+        <Text style={{color: 'black'}}>Discribe:</Text>
         <TextInput
           style={{
             borderWidth: 2,
@@ -97,27 +107,29 @@ const AddService = () => {
             height: 190,
             marginBottom: 19,
             borderRadius: 5,
+            color: 'black',
           }}
+          placeholderTextColor={'black'}
           onChangeText={text => handleChange('description', text)}
           value={state.description}
           placeholder="Discribe..."
         />
-        <Text>Price:</Text>
+        <Text style={{color: 'black'}}>Price:</Text>
         <TextInput
           style={{
             borderWidth: 2,
             width: '100%',
             marginBottom: 19,
             borderRadius: 5,
+            color: 'black',
           }}
+          placeholderTextColor={'black'}
           onChangeText={text => handleChange('price', text)}
           value={state.price}
           placeholder="Price..."
         />
         <TouchableOpacity
-          onPress={() => {
-            handleSubmit;
-          }}
+          onPress={handleSubmit}
           style={{
             width: '100%',
             alignSelf: 'center',

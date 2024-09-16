@@ -10,8 +10,8 @@ const BookingProvider = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={{}}>
-          <TouchableOpacity>
+        <View style={{marginTop:30}}>
+          <TouchableOpacity >
             <Cards />
           </TouchableOpacity>
           <View

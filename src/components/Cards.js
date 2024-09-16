@@ -13,7 +13,7 @@ const Cards = () => {
           alignSelf: 'center',
           marginVertical: 6,
         }}>
-        <Text>Cards</Text>
+        <Text style={{color:'black'}}>Cards</Text>
       </View>
     </SafeAreaView>
   );

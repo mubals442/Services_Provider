@@ -13,7 +13,7 @@ const InfoProvider = () => {
       <Text
         style={{
           textAlign: 'center',
-          fontSize: 30,
+          fontSize: 20,
           color: 'black',
           marginBottom: 30,
         }}>
@@ -23,8 +23,8 @@ const InfoProvider = () => {
         onPress={() => {}}
         style={{
           backgroundColor: 'gray',
-          width: 130,
-          height: 130,
+          width: 120,
+          height: 120,
           borderRadius: 100,
           alignSelf: 'center',
           justifyContent: 'strat',
@@ -38,12 +38,16 @@ const InfoProvider = () => {
             width: 150,
             paddingTop: 15,
           }}>
-          <Text style={{color: '#fff', textAlign: 'center'}}>Uplode image</Text>
+          <Text style={{color: '#fff', textAlign: 'center', fontSize: 8}}>
+            Uplode image
+          </Text>
         </View>
-        <Text style={{alignSelf: 'center', marginTop: 25}}>Uplode Image</Text>
+        <Text style={{alignSelf: 'center', marginTop: 25, fontSize: 8}}>
+          Uplode Image
+        </Text>
       </TouchableOpacity>
 
-      <Text>Name:</Text>
+      <Text style={{color: 'black'}}>Name:</Text>
       <TextInput
         editable={false}
         style={styles.input}
@@ -51,17 +55,17 @@ const InfoProvider = () => {
         placeholder="Name..."
       />
 
-      <Text>Role:</Text>
+      <Text style={{color: 'black'}}>Role:</Text>
       <TextInput editable={false} style={styles.input} value="provider" />
 
-      <Text>Email:</Text>
+      <Text style={{color: 'black'}}>Email:</Text>
       <TextInput
         editable={false}
         style={styles.input}
         value="musab20151@gmail.com"
         placeholder="Email..."
       />
-      <Text>Phone:</Text>
+      <Text style={{color: 'black'}}>Phone:</Text>
       <TextInput
         editable={false}
         style={styles.input}
@@ -88,11 +92,13 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 2,
-    borderColor: '#ccc',
+    borderColor: '#000000',
     width: '100%',
     borderRadius: 5,
     marginBottom: 10,
     padding: 10,
+    color: 'black',
+    backgroundColor: 'gray',opacity:0.4 
   },
 });
 
